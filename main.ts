@@ -10,10 +10,26 @@ export default class CapitalisePlugin extends Plugin {
 				let selected = editor.getSelection();
 				let from = editor.getCursor('from');
 				let to = editor.getCursor('to');
+
 				// Helper to capitalise each word
 				function capitaliseWords(str: string): string {
 					return str.replace(/\w\S*/g, (word) => {
 						return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+					});
+				}
+				// Helper to capitalise first letter of each sentence, preserving spaces
+				function sentenceCase(str: string): string {
+					// Split by sentence-ending punctuation followed by space(s)
+					return str.replace(/([^.!?]*[.!?]\s*)/g, (sentence) => {
+						if (sentence.trim().length === 0) return sentence;
+						// Find first non-space character
+						const firstCharIndex = sentence.search(/\S/);
+						if (firstCharIndex === -1) return sentence;
+						return (
+							sentence.slice(0, firstCharIndex) +
+							sentence.charAt(firstCharIndex).toUpperCase() +
+							sentence.slice(firstCharIndex + 1).toLowerCase()
+						);
 					});
 				}
 
@@ -40,13 +56,28 @@ export default class CapitalisePlugin extends Plugin {
 					}
 				}
 
+				// Detect if an entire line is selected
+				const isFullLine = from.ch === 0 && to.ch === editor.getLine(from.line).length && from.line === to.line;
+
 				let transformed = selected;
-				if (selected === selected.toLowerCase()) {
-					transformed = capitaliseWords(selected);
-				} else if (selected === capitaliseWords(selected)) {
-					transformed = selected.toUpperCase();
+				if (isFullLine) {
+					// Cycle: lowercase -> sentence case -> uppercase
+					if (selected === selected.toLowerCase()) {
+						transformed = sentenceCase(selected);
+					} else if (selected === sentenceCase(selected)) {
+						transformed = selected.toUpperCase();
+					} else {
+						transformed = selected.toLowerCase();
+					}
 				} else {
-					transformed = selected.toLowerCase();
+					// Default: lowercase -> capitalise each word -> uppercase
+					if (selected === selected.toLowerCase()) {
+						transformed = capitaliseWords(selected);
+					} else if (selected === capitaliseWords(selected)) {
+						transformed = selected.toUpperCase();
+					} else {
+						transformed = selected.toLowerCase();
+					}
 				}
 
 				editor.replaceRange(transformed, from, to);

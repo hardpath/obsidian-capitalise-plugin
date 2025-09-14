@@ -1,0 +1,11 @@
+{
+	"id": "obsidian-capitalise-plugin",
+	"name": "Obsidian Capitalise Plugin",
+	"version": "0.1.0",
+	"minAppVersion": "0.15.0",
+	"description": "An Obsidian plugin that cycles text capitalisation (lowercase - UPPERCASE - Capitalise Each Word) using Shift+F3, just like Microsoft Word",
+	"author": "Emanuel Olivera",
+	"authorUrl": "https://hardpath.co.uk",
+	"fundingUrl": "https://ko-fi.com/hardpath",
+	"isDesktopOnly": false
+}

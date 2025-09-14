@@ -3,17 +3,36 @@ An Obsidian plugin that cycles text capitalisation (lowercase → UPPERCASE → 
 
 ---
 
-## 1) Development environment set-up (Windows 11 • VS Code • GitHub)
+## Progress
+
+### 1 Development environment set-up (Windows 11 + VS Code + GitHub)
+
+- [x] 1.1 Prerequisites
+- [ ] 1.2 Create the plugin project
+- [ ] 1.3 Connect to your vault for testing
+- [ ] 1.4 Dev workflow (fast feedback)
+- [ ] 1.5 Git & GitHub
+
+### 2 Development roadmap
+
+### Progress
+- [ ] Milestone 0 — Skeleton & “Hello World!”
+- [ ] Milestone 1 — Uppercase selection
+- [ ] Milestone 2 — Add full Shift+F3 cycle
+
+---
+
+## 1 Development environment set-up (Windows 11 • VS Code • GitHub)
 
 ### 1.1 Prerequisites
 
 * **Obsidian** (latest) installed and a **test vault** ready.
 * **Node.js LTS** (includes `npm`). Verify:
 
-  ```powershell
-  node -v
-  npm -v
-  ```
+```powershell
+node -v
+npm -v
+```
   
 * **Git** (for version control and GitHub).
 * **VS Code** with recommended extensions:
@@ -22,84 +41,111 @@ An Obsidian plugin that cycles text capitalisation (lowercase → UPPERCASE → 
   * “TypeScript and JavaScript Language Features” (built-in)
 * **GitHub account** (for remote repo and releases).
 
+
+
 ### 1.2 Create the plugin project
 
-> Minimal setup using the official sample as a starting point, then trimming to essentials.
+> First, create your own GitHub repository (with LICENSE and README). Then, import the official sample plugin files into your repo and continue setup.
 
-1. **Clone the sample**:
+1. **Create your own GitHub repository**:
 
-   ```powershell
-   git clone https://github.com/obsidianmd/obsidian-sample-plugin shift-f3-capitalise
-   cd shift-f3-capitalise
-   ```
+   - On GitHub, click **New repository** and follow the prompts to create a repo (e.g., `obsidian-capitalise-plugin`).
+   - Add a `LICENSE` and `README.md` when prompted.
+   - Clone your new repo to your local machine:
+
+     ```powershell
+     git clone https://github.com/<your-username>/obsidian-capitalise-plugin.git
+     cd obsidian-capitalise-plugin
+     ```
+
+2. **Copy the sample plugin files into your repo**:
+
+   - Download or clone the [obsidian-sample-plugin](https://github.com/obsidianmd/obsidian-sample-plugin) to a temporary folder:
+
+     ```powershell
+     git clone https://github.com/obsidianmd/obsidian-sample-plugin temp-sample-plugin
+     ```
+
+   - Copy the following files from `temp-sample-plugin` into your repository root (do **not** overwrite your LICENSE or README.md):
+     - `AGENTS.md` (if present)
+     - `esbuild.config.mjs`
+     - `main.ts`
+     - `manifest.json`
+     - `package.json`
+     - `styles.css`
+     - `tsconfig.json`
+     - `version-bump.mjs` (if present)
+     - `versions.json` (if present)
+
+   - Delete the `temp-sample-plugin` folder when done.
 
 2. **Clean and rename**:
 
    * In `manifest.json`:
-
-     * `id`: `"shift-f3-capitalise"`
-     * `name`: `"Shift+F3 Capitalisation"`
-     * `version`: `"0.0.1"`
+     * `id`: `"obsidian-capitalise-plugin"`
+     * `name`: `"Obsidian Capitalise Plugin"`
+     * `version`: `"0.1.0"`
      * `minAppVersion`: keep as in sample (or latest you use)
      * `author`: your name
      * `description`: `"Cycle text capitalisation like Word (Shift+F3)."`
 
    * In `package.json`:
-
-     * Set `name`, `version`, and tidy scripts to something like:
+     * Set `name` and `version` to match your plugin, for example:
 
        ```json
        {
-         "scripts": {
-           "build": "esbuild src/main.ts --bundle --outfile=main.js --target=es2020",
-           "dev": "esbuild src/main.ts --bundle --outfile=main.js --target=es2020 --watch",
-           "lint": "eslint ."
-         }
+         "name": "obsidian-capitalise-plugin",
+         "version": "0.1.0",
+         // ...other fields...
        }
        ```
 
 3. **Install deps** (kept minimal—TypeScript + esbuild):
 
-   ```powershell
-   npm install
-   ```
+```powershell
+npm install
+```
 
    (The sample already includes `esbuild`, `typescript`, and `@types/node`. Avoid extra libraries.)
 
 4. **Project structure (lean)**
 
-   ```
-   shift-f3-capitalise/
-   ├─ manifest.json        # Obsidian metadata
-   ├─ main.js              # built output (generated)
-   ├─ src/
-   │  └─ main.ts           # plugin code (you write this)
-   ├─ styles.css           # optional; can be empty
-   ├─ tsconfig.json        # TypeScript config
-   └─ package.json
-   ```
+```
+  obsidian-capitalise-plugin/
+  ├─ LICENSE                # your existing license
+  ├─ README.md              # your existing readme
+  ├─ AGENTS.md              # (if present)
+  ├─ esbuild.config.mjs     # build config
+  ├─ main.ts                # plugin code (entry point)
+  ├─ manifest.json          # Obsidian metadata
+  ├─ package.json           # npm metadata
+  ├─ styles.css             # optional; can be empty
+  ├─ tsconfig.json          # TypeScript config
+  ├─ version-bump.mjs       # (if present)
+  └─ versions.json          # (if present)
+```
 
 ### 1.3 Connect to your vault for testing
 
 1. **Build once**:
 
-   ```powershell
-   npm run build
-   ```
+```powershell
+npm run build
+```
 
 2. **Link into your vault**:
 
-   * Create folder: `<YourVault>/.obsidian/plugins/shift-f3-capitalise/`
-   * Copy `manifest.json`, `main.js`, and `styles.css` into that folder (or use a symlink/junction during development).
+  * Create folder: `<YourVault>/.obsidian/plugins/obsidian-capitalise-plugin/`
+  * Copy `manifest.json`, `main.js`, and `styles.css` into that folder (or use a symlink/junction during development).
 
 3. **Enable in Obsidian**:
 
-   * Settings → **Community plugins** → **Turn off Safe mode** → **Browse** (not needed here) → **Enabled plugins** → toggle **Shift+F3 Capitalisation**.
+  * Settings → **Community plugins** → **Turn off Safe mode** → **Browse** (not needed here) → **Enabled plugins** → toggle **Obsidian Capitalise Plugin**.
 
 4. **Assign hotkey**:
 
-   * Settings → **Hotkeys** → search your command (you’ll add it in code) → assign **Shift+F3**.
-   * Note: if Shift+F3 is taken by another command/system, rebind it.
+  * Settings → **Hotkeys** → search your command (you’ll add it in code) → assign **Shift+F3**.
+  * Note: if Shift+F3 is taken by another command/system, rebind it.
 
 ### 1.4 Dev workflow (fast feedback)
 
@@ -122,7 +168,7 @@ An Obsidian plugin that cycles text capitalisation (lowercase → UPPERCASE → 
    git add .
    git commit -m "chore: scaffold plugin"
    git branch -M main
-   git remote add origin https://github.com/<you>/shift-f3-capitalise.git
+  git remote add origin https://github.com/<you>/obsidian-capitalise-plugin.git
    git push -u origin main
    ```
    
@@ -132,7 +178,7 @@ An Obsidian plugin that cycles text capitalisation (lowercase → UPPERCASE → 
 
 ---
 
-## 2) Development roadmap (incremental features → from “Hello World!” to full Shift+F3)
+## 2 Development roadmap (incremental features → from “Hello World!” to full Shift+F3)
 
 > Goal: ship value early, keep dependencies minimal, and harden behaviour iteratively.
 
@@ -243,3 +289,4 @@ export default class ShiftF3CapitalisePlugin extends Plugin {
 * **No heavy third-party dependencies**: keep to Obsidian API + TypeScript + esbuild.
 * Obsidian won’t let a plugin *force* a global hotkey; users bind **Shift+F3** in **Settings → Hotkeys** to your command.
 * Keep transforms **pure** and **unit-testable** (pass strings in, get strings out) for reliability.
+

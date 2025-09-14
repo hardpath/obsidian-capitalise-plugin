@@ -8,10 +8,9 @@ An Obsidian plugin that cycles text capitalisation (lowercase → UPPERCASE → 
 ### 1 Development environment set-up (Windows 11 + VS Code + GitHub)
 
 - [x] 1.1 Prerequisites
-- [ ] 1.2 Create the plugin project
-- [ ] 1.3 Connect to your vault for testing
-- [ ] 1.4 Dev workflow (fast feedback)
-- [ ] 1.5 Git & GitHub
+- [x] 1.2 Create the plugin project
+- [x] 1.3 Connect to your vault for testing
+- [x] 1.4 Git & GitHub
 
 ### 2 Development roadmap
 
@@ -140,41 +139,24 @@ npm run build
 
 3. **Enable in Obsidian**:
 
-  * Settings → **Community plugins** → **Turn off Safe mode** → **Browse** (not needed here) → **Enabled plugins** → toggle **Obsidian Capitalise Plugin**.
+  * Settings - **Community plugins** - **Enabled plugins** (toggle **Obsidian Capitalise Plugin**).
 
-4. **Assign hotkey**:
-
-  * Settings → **Hotkeys** → search your command (you’ll add it in code) → assign **Shift+F3**.
-  * Note: if Shift+F3 is taken by another command/system, rebind it.
-
-### 1.4 Dev workflow (fast feedback)
-
-* Run a watch build:
-
-  ```powershell
-  npm run dev
-  ```
-
-* After edits, in Obsidian press **Ctrl+R** (reload UI) to pick up the rebuilt `main.js`.
-
-  * This avoids extra tooling/hot-reload plugins.
-
-### 1.5 Git & GitHub
+### 1.4 Git & GitHub
 
 1. **Initial commit & remote**:
 
-   ```powershell
-   git init
-   git add .
-   git commit -m "chore: scaffold plugin"
-   git branch -M main
-  git remote add origin https://github.com/<you>/obsidian-capitalise-plugin.git
-   git push -u origin main
-   ```
+```
+git init
+git add .
+git commit -m "chore: scaffold plugin"
+git branch -M main
+git remote add origin https://github.com/<you>/obsidian-capitalise-plugin.git
+git push -u origin main
+```
    
 2. **Releases** (later):
 
-   * Tag versions (`git tag v0.1.0 && git push --tags`) and publish a GitHub Release attaching `main.js`, `manifest.json`, `styles.css`.
+* Tag versions (`git tag v0.1.0 && git push --tags`) and publish a GitHub Release attaching `main.js`, `manifest.json`, `styles.css`.
 
 ---
 

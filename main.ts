@@ -4,8 +4,8 @@ import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Set
 export default class CapitalisePlugin extends Plugin {
 	async onload() {
 		this.addCommand({
-			id: 'shift-f3-cycle-case',
-			name: 'Shift+F3: Cycle selection case',
+			id: 'cycle-capitalisation',
+			name: 'Cycle text capitalisation',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				let selected = editor.getSelection();
 				let from = editor.getCursor('from');

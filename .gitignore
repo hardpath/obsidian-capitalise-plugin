@@ -1,6 +1,9 @@
 # Ignore node dependencies
 node_modules/
 
+# Ignore notes
+notes/
+
 # Ignore build output
 main.js
 

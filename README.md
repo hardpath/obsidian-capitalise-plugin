@@ -1,5 +1,7 @@
 # Capitaliser
 
+![[capitaliser.png]]
+
 Effortlessly cycle the capitalisation of your text in Obsidian - just like what Shift+F3 does in Microsoft Word. Instantly switch between lowercase, Capitalise Each Word, and UPPERCASE with a single command and your favourite hotkey.
 
 ---
@@ -31,6 +33,8 @@ Effortlessly cycle the capitalisation of your text in Obsidian - just like what 
 
 ## ☕ Support & Contributions
 
-![Contribution](./media/support_me_on_kofi_blue.png)
+<a href="https://ko-fi.com/hardpath" target="_blank">
+	<img src="./media/support_me_on_kofi_blue.png" alt="Support me on Ko-fi"/>
+</a>
 
 If you find this plugin helpful, consider [buying me a coffee](https://ko-fi.com/hardpath) to support future development!

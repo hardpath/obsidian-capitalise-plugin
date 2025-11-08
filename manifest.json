@@ -3,7 +3,7 @@
 	"name": "Capitaliser",
 	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
-	"description": "Cycle text capitalisation (lowercase, UPPERCASE, Capitalise Each Word) in your notes, similar to what Shift+F3 does in Microsoft Word.",
+	"description": "Cycle text capitalisation (lowercase, Capitalise Each Word, UPPERCASE) in your notes, similar to what Shift+F3 does in Microsoft Word.",
 	"author": "Emanuel Oliveira",
 	"authorUrl": "https://hardpath.co.uk",
 	"fundingUrl": "https://ko-fi.com/hardpath",

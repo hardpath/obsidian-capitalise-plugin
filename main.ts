@@ -1,8 +1,8 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { Editor, MarkdownView, Plugin } from 'obsidian';
 
 
 export default class CapitalisePlugin extends Plugin {
-	async onload() {
+	onload() {
 		this.addCommand({
 			id: 'cycle-capitalisation',
 			name: 'Cycle text capitalisation',

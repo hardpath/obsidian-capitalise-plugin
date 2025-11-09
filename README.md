@@ -27,9 +27,17 @@ Instantly switch between lowercase, Capitalise Each Word, and UPPERCASE with a s
 
 ## 💡 Usage
 
-- Select text, place your cursor in a word, or select an entire line.
-- Trigger the command (via hotkey or command palette).
-- Watch your text cycle through lowercase, Capitalise Each Word, and UPPERCASE.
+**Before using the plugin:**
+
+1. Go to Settings - Hotkeys
+2. Search for "Capitaliser: Cycle text capitalisation".
+3. Assign your preferred hotkey (e.g., Shift+F3 to match Microsoft Word).
+
+**To use the plugin:**
+
+1. Select text, place your cursor in a word, or select an entire line.
+2. Trigger the command (via hotkey).
+3. Watch your text cycle through lowercase, Capitalise Each Word, and UPPERCASE.
 
 ---
 
